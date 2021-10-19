@@ -77,27 +77,6 @@ def jade(thetas_limit, target_vectors_init, uCR=0.5, uF=0.6, c=0.1, NP=10, max_g
         uCR = (1-c)*uCR + c*np.mean(sCR)
         uF = (1-c)*uF + c*(np.sum(np.power(sF, 2))/np.sum(sF))
 
-        # Save and calculate results
-        cur_round = gen + 1
-        best = np.argmax(target_fitness)
-        std = np.std(target_fitness)
-        mean = np.mean(target_fitness)
-        # saves results
-        file_aux = open(experiment_name+'/results.txt', 'a')
-        print('\n GENERATION '+str(cur_round)+' '+str(round(target_fitness[best], 6))
-              + ' '+str(round(mean, 6))+' '+str(round(std, 6)))
-        file_aux.write('\n'+str(cur_round)+' '+str(round(target_fitness[best], 6))+' '
-                       + str(round(mean, 6))+' '+str(round(std, 6)))
-        file_aux.close()
-
-        # saves file with the best solution
-        np.savetxt(experiment_name+'/best.txt', target_vectors[best])
-
-        # saves simulation state
-        solutions = [target_vectors, target_fitness]
-        env.update_solutions(solutions)
-        env.save_state()
-
         # long time no improvemnt, using halton seq
         if prev_best == target_fitness[best]: 
             notimprov += 1
