@@ -1,4 +1,4 @@
-# MyEvo
+# Adaptive-Differential-Evolution
 jade - Adaptive differential evolution algorithm with halton shaking
 
 paper from: 
